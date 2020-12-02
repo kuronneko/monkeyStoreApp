@@ -24,7 +24,10 @@ public class controller {
     public controller() {
     }
 
-    public ArrayList<producto> bodegaDefault() {
+     /** 
+     * @return temporaryProductList
+     */
+    public ArrayList<producto> bodegaDefault() {  //ArrayList por defecto con 4 Productos agregados
         ArrayList<producto> temporaryProductList = new ArrayList<producto>();
         temporaryProductList.add(new producto(001, "Mouse Logitech", 39990, 10));
         temporaryProductList.add(new producto(002, "Teclado Logitech", 79990, 20));
@@ -32,20 +35,30 @@ public class controller {
         temporaryProductList.add(new producto(004, "MSI GTX 970", 119990, 10));
         return temporaryProductList;
     }
-
-    public void cargarBodegaInicial() {
+    
+     /** 
+     * Al iniciar la aplicación y verificar el contenido inexistente del static ArrayList, lo cargará con el ArrayList con los Productos predeterminados@return
+     */
+    public void cargarBodegaInicial() { 
         bodega Bodega = new bodega();
         if (Bodega.getProductosList().isEmpty()) {
             Bodega.setProductosList(this.bodegaDefault());
         }
     }
 
-    public void reestablecerFullStock() {
+     /** 
+     * Reestablece el ArrayList a su estado inicial
+     */
+    public void reestablecerFullStock() { 
         bodega Bodega = new bodega();
         Bodega.setProductosList(this.bodegaDefault());
     }
 
-    public void cargarJTableProductos(JTable jtableBodegaStock) {
+     /** 
+     * Carga la tabla con la información del static ArrayList de la bodega
+     * @param JTable jtableBodegaStock
+     */
+    public void cargarJTableProductos(JTable jtableBodegaStock) { 
         bodega Bodega = new bodega();
 
         DefaultTableModel tableModel = (DefaultTableModel) jtableBodegaStock.getModel();
@@ -65,7 +78,11 @@ public class controller {
         }
     }
 
-    public void cargarJTableVentasD(JTable jTableVentasD) {
+     /** 
+     * Carga la tabla con la información del static ArrayList de las ventas
+     * @param JTable jTableVentasD
+     */
+    public void cargarJTableVentasD(JTable jTableVentasD) { 
         ventaD VentaD = new ventaD();
 
         DefaultTableModel tableModel = (DefaultTableModel) jTableVentasD.getModel();
@@ -85,7 +102,11 @@ public class controller {
         }
     }
 
-    public void cargarJComboBoxProductos(JComboBox cbxProductos) {
+     /** 
+     * Carga el combobox con los nombres de los productos almacenados en la static ArrayList de la bodega
+     * @param JTable jTableVentasD
+     */
+    public void cargarJComboBoxProductos(JComboBox cbxProductos) { 
         bodega Bodega = new bodega();
         for (producto Producto : Bodega.getProductosList()) {
             cbxProductos.addItem(Producto.getNombreProducto());
@@ -93,7 +114,11 @@ public class controller {
         }
     }
 
-    public void cbxProductosScript(JComboBox cbxCantidad, JComboBox cbxProductos, JLabel jLabelTotal) {
+     /** 
+     * Script que actua en el comboBox perteneciente al listado de los productos, y permite actualizar el comboBox perteneciente a la cantidad de productos disponibles
+     * @param JComboBox cbxCantidad, JComboBox cbxProductos, JLabel jLabelTotal
+     */
+    public void cbxProductosScript(JComboBox cbxCantidad, JComboBox cbxProductos, JLabel jLabelTotal) { //
         cbxCantidad.removeAllItems();
         bodega Bodega = new bodega();
         for (producto Producto : Bodega.getProductosList()) {
@@ -112,6 +137,10 @@ public class controller {
         }
     }
 
+     /** 
+     * Script que actua en el comboBox perteneciente a la cantidad de productos disponibles, permitiendo establecer un total a pagar basandose en la cantidad seleccionada
+     * @param JComboBox cbxCantidad, JComboBox cbxProductos, JLabel jLabelTotal
+     */
     public void cbxCantidadScript(JComboBox cbxCantidad, JComboBox cbxProductos, JLabel jLabelTotal) {
         bodega Bodega = new bodega();
         for (producto Producto : Bodega.getProductosList()) {
@@ -126,6 +155,11 @@ public class controller {
         }
     }
 
+      /** 
+     * Script que actua al ejecutar el boton para efectuar la venta, permitiendo, 
+     * primero restar la cantidad de productos disponibles segun el producto seleccionado y finalmente inserta la información de la venta en el static ArrayList de ventaDetalle
+     * @param JComboBox cbxCantidad, JComboBox cbxProductos, JLabel jLabelTotal
+     */
     public void btnSubmitScript(JComboBox cbxCantidad, JComboBox cbxProductos, JLabel jLabelTotal) {
 
         bodega Bodega = new bodega();
