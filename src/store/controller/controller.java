@@ -25,9 +25,10 @@ public class controller {
     }
 
      /** 
+     * ArrayList por defecto con 4 Productos agregados
      * @return temporaryProductList
      */
-    public ArrayList<producto> bodegaDefault() {  //ArrayList por defecto con 4 Productos agregados
+    public ArrayList<producto> bodegaDefault() { 
         ArrayList<producto> temporaryProductList = new ArrayList<producto>();
         temporaryProductList.add(new producto(001, "Mouse Logitech", 39990, 10));
         temporaryProductList.add(new producto(002, "Teclado Logitech", 79990, 20));
